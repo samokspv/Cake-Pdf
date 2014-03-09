@@ -500,6 +500,20 @@ class CakePdf {
 	}
 
 /**
+ * Get/Set document css file.
+ *
+ * @param null|string $css
+ * @return mixed
+ */
+	public function css($css = null) {
+		if ($css === null) {
+			return $this->_css;
+		}
+		$this->_css = $css;
+		return $this;
+	}
+
+/**
  * Get/Set protection.
  *
  * @param null|boolean $protect
