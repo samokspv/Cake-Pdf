@@ -1,5 +1,5 @@
 {
-	"name": "samokspv/CakePdf",
+	"name": "samokspv/cake-pdf",
 	"type": "cakephp-plugin",
         "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
 	"homepage": "http://github.com/samokspv/CakePdf",
