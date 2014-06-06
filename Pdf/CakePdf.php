@@ -126,6 +126,13 @@ class CakePdf {
 	protected $_title = null;
 
 /**
+ * Css
+ *
+ * @var string
+ */
+	protected $_css = null;
+
+/**
  * Flag that tells if we need to pass it through crypto
  *
  * @var boolean

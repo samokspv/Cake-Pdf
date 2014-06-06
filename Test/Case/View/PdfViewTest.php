@@ -56,7 +56,7 @@ class PdfViewTest extends CakeTestCase {
 		$this->assertEquals('application/pdf', $result);
 
 		$result = $this->View->pdfConfig;
-		$this->assertEquals(array('engine' => 'PdfTest'), $result);
+		$this->assertEquals('PdfTest', $result['engine']);
 
 		$result = $this->View->renderer();
 		$this->assertInstanceOf('CakePdf', $result);
