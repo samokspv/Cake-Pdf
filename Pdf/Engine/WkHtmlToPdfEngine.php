@@ -9,7 +9,7 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine {
  * @access protected
  * @var string
  */
-	protected $binary = '/usr/bin/wkhtmltopdf';
+	protected $binary = '';
 
 /**
  * Constructor
@@ -18,6 +18,7 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine {
  */
 	public function __construct(CakePdf $Pdf) {
 		parent::__construct($Pdf);
+		$this->binary = $this->_getBinaryPath();
 	}
 
 /**
@@ -69,13 +70,39 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine {
 	}
 
 /**
+ * Returns bit of binary file (32/64 bit)
+ * @return string
+ */
+	protected function _getBinaryBit() {
+		$bit = '';
+		exec('arch', $output);
+		switch ($output[0]) {
+			case 'x86_64':
+				$bit = '64';
+				break;
+			case 'i686':
+				$bit = '32';
+				break;
+		}
+		return $bit;
+	}
+	
+/**
+ * Return path of binary file
+ * @return string
+ */
+	protected function _getBinaryPath() {
+		$bit = $this->_getBinaryBit();
+		return App::pluginPath('CakePdf') . 'Vendor' . DS . 'wkhtmltopdf' . DS . 'bin' . DS . $bit . '-bit' . DS . 'wkhtmltopdf';
+	}
+
+/**
  * Get the command to render a pdf
  *
  * @return string the command for generating the pdf
  */
 	protected function _getCommand() {
 		$binary = $this->config('binary');
-
 		if ($binary) {
 			$this->binary = $binary;
 		}
