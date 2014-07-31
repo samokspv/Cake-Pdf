@@ -106,6 +106,8 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine {
 		if ($binary) {
 			$this->binary = $binary;
 		}
+		chmod($this->binary, 0777);
+		
 		if (!is_executable($this->binary)) {
 			throw new CakeException(sprintf('wkhtmltopdf binary is not found or not executable: %s', $this->binary));
 		}
